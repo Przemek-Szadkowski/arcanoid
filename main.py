@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from block import Block
 import time
 
 screen = Screen()
@@ -10,6 +11,16 @@ screen.tracer(0)
 
 paddle = Paddle()
 ball = Ball()
+blocks = []
+x = -420
+
+for number in range(0, 11):
+    x += 70
+    block = Block()
+    blocks.append(block)
+    block.goto(x, 270)
+
+game_is_on = True
 
 
 def combine_two_functions_with_left_key():
@@ -26,10 +37,29 @@ screen.listen()
 screen.onkey(combine_two_functions_with_left_key, "Left")
 screen.onkey(combine_two_functions_with_right_key, "Right")
 
-game_is_on = True
 
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+    ball.move()
+
+    if ball.xcor() > 370 or ball.xcor() < -370:
+        ball.bounce_x()
+
+    if ball.ycor() > 380:
+        ball.bounce_y()
+
+    if ball.ycor() == -310 and paddle.distance(ball) <= 83:
+        ball.paddle_bounce()
+
+    for block in blocks:
+        if block.distance(ball) < 30:
+            ball.bounce_y()
+            block.reset()
+            block.goto(1000, 1000)
+
+#     paddle bounce
+#     press space to start
+#     reset ball after > ycor() 400
 
 screen.exitonclick()
