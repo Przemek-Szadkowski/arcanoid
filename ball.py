@@ -8,8 +8,8 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
-        self.x_move = 20
-        self.y_move = 20
+        self.x_move = 15
+        self.y_move = 15
         self.goto(0, -310)
 
     def stick_to_paddle_move_left(self):
@@ -34,5 +34,3 @@ class Ball(Turtle):
     def paddle_bounce(self):
         self.y_move *= -1
 
-
-    # w centrum bounce_y a im bliżej boku tym odbicie z większym kątem

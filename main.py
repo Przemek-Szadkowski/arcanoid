@@ -7,20 +7,29 @@ import time
 screen = Screen()
 screen.setup(width=800, height=800)
 screen.bgcolor("black")
+screen.colormode(255)
 screen.tracer(0)
 
 paddle = Paddle()
 ball = Ball()
 blocks = []
 x = -420
+y = 290
 
-for number in range(0, 11):
-    x += 70
-    block = Block()
-    blocks.append(block)
-    block.goto(x, 270)
+# creating blocks
+
+for _ in range (0,6):
+    x = -420
+    y -= 35
+    for number in range(0, 11):
+        x += 70
+        block = Block()
+        blocks.append(block)
+        block.goto(x, y)
 
 game_is_on = True
+
+# combine onkey functions with left and right keys
 
 
 def combine_two_functions_with_left_key():
